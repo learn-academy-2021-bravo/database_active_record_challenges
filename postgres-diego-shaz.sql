@@ -48,18 +48,64 @@ FROM country
 WHERE governmentform LIKE '%epublic%' AND indepyear > 1945
 
 -- Which countries achieved independence after 1945 and are not some kind of republic? (HINT: 27 entries)
+SELECT name, governmentform, indepyear
+
+FROM country
+
+WHERE governmentform NOT LIKE '%epublic%' AND indepyear > 1945
+
 -- ORDER BY
 -- Which fifteen countries have the lowest life expectancy? (HINT: starts with Zambia, ends with Sierra Leonne)
+SELECT name, lifeexpectancy
+
+FROM country
+
+order by lifeexpectancy
+
+limit 15
+
 -- Which fifteen countries have the highest life expectancy? (HINT: starts with Andorra, ends with Spain)
+SELECT name, lifeexpectancy
+FROM country
+where lifeexpectancy is not null
+order by lifeexpectancy desc
+limit 15
+
 -- Which five countries have the lowest population density (density = population / surfacearea)? (HINT: starts with Greenland)
+
+
 -- Which countries have the highest population density?(HINT: starts with Macao)
+
+
 -- Which is the smallest country by area? (HINT: .4)
+SELECT name, population, surfacearea
+FROM country
+order by surfacearea
+limit 1
+
 -- Which is the smallest country by population? (HINT: 50)?
+select name, population
+from country
+where population > 0
+order by population
+limit 1
+
 -- Which is the biggest country by area? (HINT: 1.70754e+07)
+select name, population, surfacearea
+from country
+order by surfacearea desc
+limit 100
+
 -- Which is the biggest country by population? (HINT: 1277558000)
+select name, population, surfacearea
+from country
+order by population desc
+limit 1
+
 -- Subqueries: WITH
 -- Of the countries with the top 10 gnp, which has the smallest population? (HINT: Canada)
 -- Of the 10 least populated countries with permament residents (a non-zero population), which has the largest surfacearea? (HINT: Svalbard and Jan Mayen)
+
 -- Aggregate Functions: GROUP BY
 -- Which region has the highest average gnp? (HINT: North America)
 -- Who is the most influential head of state measured by population? (HINT: Jiang Zemin)
