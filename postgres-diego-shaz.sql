@@ -126,12 +126,37 @@ limit 1
 
 -- Aggregate Functions: GROUP BY
 -- Which region has the highest average gnp? (HINT: North America)
-
-
+SELECT region, AVG(gnp)
+FROM country
+GROUP BY region
+order by avg desc
+limit 1
 
 -- Who is the most influential head of state measured by population? (HINT: Jiang Zemin)
+SELECT headofstate, SUM(population)
+FROM country
+WHERE population > 0
+GROUP BY headofstate
+order by sum desc
+limit 1
+
+
 -- Who is the most influential head of state measured by surface area? (HINT: Elisabeth II)
+SELECT headofstate, SUM(surfacearea)
+FROM country
+WHERE surfacearea > 0
+GROUP BY headofstate
+order by sum desc
+limit 1
+
+
 -- What is the average life expectancy for all continents?
+SELECT continent, AVG(lifeexpectancy)
+FROM country
+WHERE lifeexpectancy > 0
+GROUP BY continent
+
+
 -- What are the most common forms of government? (HINT: use count(*))
 -- How many countries are in North America?
 -- What is the total population of all continents?
