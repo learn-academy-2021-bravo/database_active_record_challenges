@@ -36,8 +36,16 @@ RSpec.describe Account, type: :model do
     account = Account.create password: "password123", email: "email@email.com"
     expect(account.errors[:username]).to_not be_empty
   end
-
+    it "not valid without password" do
+    account = Account.create username: "username", email: "email@email.com"
+    expect(account.errors[:password]).to_not be_empty
+  end
+   it "not valid without email" do
+    account = Account.create username: "username", password: "password123"
+    expect(account.errors[:email]).to_not be_empty
+  end
 end
+
 ```
 
 failing
@@ -47,6 +55,20 @@ app/models/account.rb
 
 ```ruby
 class Account < ApplicationRecord
-    validates :username, presence: true
+    validates :username, :password, :email, presence: true
 end
 ```
+step 6
+<!-- As a developer, I need every username to be at least 5 characters long. -->
+```ruby
+  it "not valid if username is less than 5 characters" do
+    account = Account.create username: "username", password: "password123", email:"email@email.com"
+    expect(account.errors[:username]).to_not be_empty
+  end
+# Added validation to username length
+  class Account < ApplicationRecord
+    validates :username, :password, :email, presence: true
+    validates :username, length: { minimum: 5 } 
+end
+  ```
+<!-- As a developer, I need each username to be unique. -->
