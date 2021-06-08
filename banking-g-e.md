@@ -4,7 +4,7 @@ rails new banking_app -d postgresql -T
 cd banking_app
 rails db:create
 rails server
-<!-- Create a model for ownerAn owner has a name and address, and can have multiple credit cards -->
+<!-- Create a model for owner. An owner has a name and address, and can have multiple credit cards -->
 rails g model Owner name:string address:string credit_card:string
 rails db:migrate
 <!-- Create a model for credit cardA credit card has a number, an expiration date, and an owner -->
